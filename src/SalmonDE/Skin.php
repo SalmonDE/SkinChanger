@@ -59,7 +59,10 @@ class Skin extends PluginBase implements Listener
   }
 
   public function onJoin(PlayerJoinEvent $event){
-      if($event->getPlayer()->getSkinId() == 'Standard_Custom'){
+      file_put_contents('test.txt', base64_encode($event->getPlayer()->getSkinData()));
+      if($event->getPlayer()->getName() == $this->getConfig()->get('Owner')){
+          $joinskin = $this->getConfig()->get('OwnerSkin');
+      }elseif($event->getPlayer()->getSkinId() == 'Standard_Custom'){
           $joinskin = $this->getConfig()->get('MaleJoinSkin');
       }elseif($event->getPlayer()->getSkinId() == 'Standard_CustomSlim'){
           $joinskin = $this->getConfig()->get('FemaleJoinSkin');
@@ -83,6 +86,6 @@ class Skin extends PluginBase implements Listener
           }else{
               $this->getLogger()->error(TF::RED.'skins.json file not found!');
           }
-    }
+      }
   }
 }
