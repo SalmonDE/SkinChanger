@@ -1,0 +1,19 @@
+name: SkinChanger
+api: 2.0.0
+version: 1.0.0
+author: SalmonDE
+main: SalmonDE\Skin
+commands:
+  changeskin:
+    usage: /changeskin [Skin]
+    permission: skinchanger.cmd.changeskin
+  listskins:
+    usage: /listskins
+    permission: skinchanger.cmd.listskins
+permissions:
+  skinchanger:
+    children:
+      skinchanger.cmd:
+        children:
+          skinchanger.cmd.changeskin:
+          skinchanger.cmd.listskins:

@@ -1,0 +1,4 @@
+#To disable join skin use NULL
+MaleJoinSkin: ClownFish
+FemaleJoinSkin: Mermaid
+#Skins need to be base64 encoded!
