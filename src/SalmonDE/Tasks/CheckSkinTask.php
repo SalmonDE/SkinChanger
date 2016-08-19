@@ -16,7 +16,6 @@ class CheckSkinTask extends PluginTask
   }
 
   public function onRun($currenttick){
-      sleep(5);
       if(base64_encode($this->player->getSkinData()) == $this->skindata){
           if(!$this->player->getSkinId() == $this->skinid){
               $this->player->kick(TF::AQUA.'Entschuldige, du wurdest gekickt, da dein Skin Format vom Server nicht geändert werden konnte.'."\n".TF::AQUA.'☹', false);
