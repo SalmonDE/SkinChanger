@@ -7,6 +7,7 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
+use SalmonDE\Tasks\CheckSkinTask;
 
 class Skin extends PluginBase implements Listener
 {
@@ -73,7 +74,8 @@ class Skin extends PluginBase implements Listener
                   if(isset($skins[$joinskin]['skindata'])){
                       if(isset($skins[$joinskin]['skinid'])){
                           $event->getPlayer()->setSkin(base64_decode($skins[$joinskin]['skindata']), $skins[$joinskin]['skinid']);
-                          $sender->sendTip(TF::GREEN.TF::BOLD.'Dein Skin wurde geändert!');
+                          $event->getPlayer()->sendTip(TF::GREEN.TF::BOLD.'Dein Skin wurde geändert!');
+                          $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $event->getPlayer(), $skins[$joinskin]['skindata'], $skins[$joinskin]['skinid']), 100);
                       }else{
                           $this->getLogger()->error(TF::RED.'Skin ID of '.TF::AQUA.$joinskin.TF::RED.' not found!');
                       }
