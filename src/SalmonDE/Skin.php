@@ -59,7 +59,6 @@ class Skin extends PluginBase implements Listener
   }
 
   public function onJoin(PlayerJoinEvent $event){
-      file_put_contents('test.txt', base64_encode($event->getPlayer()->getSkinData()));
       if($event->getPlayer()->getName() == $this->getConfig()->get('Owner')){
           $joinskin = $this->getConfig()->get('OwnerSkin');
       }elseif($event->getPlayer()->getSkinId() == 'Standard_Custom'){
