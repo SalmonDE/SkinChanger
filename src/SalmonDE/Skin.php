@@ -74,6 +74,7 @@ class Skin extends PluginBase implements Listener
                   if(isset($skins[$joinskin]['skindata'])){
                       if(isset($skins[$joinskin]['skinid'])){
                           $event->getPlayer()->setSkin(base64_decode($skins[$joinskin]['skindata']), $skins[$joinskin]['skinid']);
+                          $sender->sendTip(TF::GREEN.TF::BOLD.'Dein Skin wurde geändert!');
                       }else{
                           $this->getLogger()->error(TF::RED.'Skin ID of '.TF::AQUA.$joinskin.TF::RED.' not found!');
                       }
