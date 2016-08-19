@@ -2,5 +2,11 @@
 MaleJoinSkin: ClownFish
 FemaleJoinSkin: Mermaid
 #Skins need to be base64 encoded!
+#Username of the server owner
 Owner: SalmonDE
+#Skin name of the Server Owner
 OwnerSkin: SalmonDE
+#Check if skin could be changed on join
+CheckJoinSkin: true
+#Time in seconds when the check should begin
+SkinCheckTime: 25

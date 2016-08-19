@@ -75,7 +75,9 @@ class Skin extends PluginBase implements Listener
                       if(isset($skins[$joinskin]['skinid'])){
                           $event->getPlayer()->setSkin(base64_decode($skins[$joinskin]['skindata']), $skins[$joinskin]['skinid']);
                           $event->getPlayer()->sendTip(TF::GREEN.TF::BOLD.'Dein Skin wurde geändert!');
-                          $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $event->getPlayer(), $skins[$joinskin]['skindata'], $skins[$joinskin]['skinid']), 100);
+                          if($this->getConfig()->get('CheckJoinSkin')){
+                              $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $event->getPlayer(), $skins[$joinskin]['skindata'], $skins[$joinskin]['skinid']), 20 * $this->getConfig()->get('SkinCheckTime'));
+                          }
                       }else{
                           $this->getLogger()->error(TF::RED.'Skin ID of '.TF::AQUA.$joinskin.TF::RED.' not found!');
                       }
