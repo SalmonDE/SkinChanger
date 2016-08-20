@@ -21,7 +21,7 @@ class Skin extends PluginBase implements Listener
       if($this->getConfig()->get('JoinSkins')){
           if(file_exists($this->getDataFolder().'skins.json')){
               $skins = json_decode(file_get_contents($this->getDataFolder().'skins.json'), true);
-              if(!$event->getPlayer()->getName() == $this->getConfig()->get('Owner')){
+              if($event->getPlayer()->getName() == $this->getConfig()->get('Owner')){
                   $owner = $this->getConfig()->get('Owner');
                   $joinskin = $skins[$owner];
               }elseif($event->getPlayer()->getSkinId() == 'Standard_CustomSlim'){
