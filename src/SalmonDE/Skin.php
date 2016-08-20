@@ -1,8 +1,6 @@
 <?php
 namespace SalmonDE;
 
-use pocketmine\command\Command;
-use pocketmine\command\Commandsender;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\plugin\PluginBase;
@@ -19,77 +17,40 @@ class Skin extends PluginBase implements Listener
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
   }
 
-  public function onCommand(CommandSender $sender, Command $cmd, $label, array $args){
-      if(strtolower($cmd->getName()) == 'changeskin'){
-          if(file_exists($this->getDataFolder().'skins.json')){
-              $skins = json_decode(file_get_contents($this->getDataFolder().'skins.json'), true);
-              if(isset($args[0])){
-                  $skin = $args[0];
-                  return true;
-              }else{
-                  $skin = 'Ich-Will-Einen-Skin';
-              }
-              if(isset($skins[$skin])){
-                  if(isset($skins[$skin]['skindata'])){
-                      if(isset($skins[$skin]['skinid'])){
-                          $sender->setSkin(base64_decode($skins[$skin]['skindata']), $skins[$skin]['skinid']);
-                          $sender->sendMessage(TF::GREEN.TF::BOLD.'Dein Skin wurde geändert!');
-                          $sender->sendTip(TF::GREEN.TF::BOLD.'Dein Skin wurde geändert!');
-                      }else{
-                          $sender->sendMessage(TF::GOLD.'Dieser Skin ist fehlerhaft. Bitte erzähle SalmonDE davon!');
-                      }
-                  }else{
-                      $sender->sendMessage(TF::GOLD.'Dieser Skin ist fehlerhaft. Bitte erzähle SalmonDE davon!');
-                  }
-              }else{
-                  $sender->sendMessage(TF::RED.'Skin '.TF::AQUA.$skin.TF::RED.' wurde nicht gefunden!');
-              }
-          }else{
-              $sender->sendMessage(TF::RED.'Keine Skins verfügbar!');
-          }
-      }elseif(strtolower($cmd->getName()) == 'listskins'){
-          if(file_exists($this->getDataFolder().'skins.json')){
-              $skins = json_decode(file_get_contents($this->getDataFolder().'skins.json'), true);
-              foreach($skins as $skin){
-                $sender->sendMessage(TF::GOLD.'Skinname: '.TF::GREEN.$skin['skinname'].TF::GOLD.', Skintyp: '.TF::AQUA.$skin['skinid']);
-              }
-          }else{
-              $sender->sendMessage(TF::RED.'Keine Skins verfügbar!');
-          }
-      }
-  }
-
   public function onJoin(PlayerJoinEvent $event){
-      if($event->getPlayer()->getName() == $this->getConfig()->get('Owner')){
-          $joinskin = $this->getConfig()->get('OwnerSkin');
-      }elseif($event->getPlayer()->getSkinId() == 'Standard_Custom'){
-          $joinskin = $this->getConfig()->get('MaleJoinSkin');
-      }elseif($event->getPlayer()->getSkinId() == 'Standard_CustomSlim'){
-          $joinskin = $this->getConfig()->get('FemaleJoinSkin');
-      }
-      if($joinskin !== 'NULL'){
+      if($this->getConfig()->get('JoinSkins')){
           if(file_exists($this->getDataFolder().'skins.json')){
               $skins = json_decode(file_get_contents($this->getDataFolder().'skins.json'), true);
-              if(isset($skins[$joinskin])){
-                  if(isset($skins[$joinskin]['skindata'])){
-                      if(isset($skins[$joinskin]['skinid'])){
-                          $event->getPlayer()->setSkin(base64_decode($skins[$joinskin]['skindata']), $skins[$joinskin]['skinid']);
+              if(!$event->getPlayer()->getName() == $this->getConfig()->get('Owner')){
+                  $owner = $this->getConfig()->get('Owner');
+                  $joinskin = $skins[$owner];
+              }elseif($event->getPlayer()->getSkinId() == 'Standard_CustomSlim'){
+                  $num = mt_rand(1, count($skins['Female']));
+                  $joinskin = $skins['Female'][$num];
+              }else{
+                  $num = mt_rand(1, count($skins['Male']));
+                  $joinskin = $skins['Male'][$num];
+              }
+              if(isset($joinskin)){
+                  if(isset($joinskin['skindata'])){
+                      if(isset($joinskin['skinid'])){
+                          $event->getPlayer()->setSkin(base64_decode($joinskin['skindata']), $joinskin['skinid']);
                           $event->getPlayer()->sendTip(TF::GREEN.TF::BOLD.'Dein Skin wurde geändert!');
                           if($this->getConfig()->get('CheckJoinSkin')){
-                              $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $event->getPlayer(), $skins[$joinskin]['skindata'], $skins[$joinskin]['skinid']), 20 * $this->getConfig()->get('SkinCheckTime'));
+                              $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $event->getPlayer(), $joinskin['skindata'], $joinskin['skinid']), 20 * $this->getConfig()->get('SkinCheckTime'));
                           }
                       }else{
-                          $this->getLogger()->error(TF::RED.'Skin ID of '.TF::AQUA.$joinskin.TF::RED.' not found!');
+                          $this->getLogger()->error(TF::RED.'Skin ID of '.TF::AQUA.$joinskin['skinname'].TF::RED.' not found!');
                       }
                   }else{
-                      $this->getLogger()->error(TF::RED.'Skin data of '.TF::AQUA.$joinskin.TF::RED.' not found!');
+                      $this->getLogger()->error(TF::RED.'Skin data of '.TF::AQUA.$joinskin['skinname'].TF::RED.' not found!');
                   }
               }else{
-                  $this->getLogger()->error(TF::RED.'Skin '.TF::AQUA.$joinskin.TF::RED.' not found!');
+                  $this->getLogger()->error(TF::RED.'Skin not found!');
               }
-          }else{
-              $this->getLogger()->error(TF::RED.'skins.json file not found!');
-          }
+      }else{
+          $this->getLogger()->error(TF::RED.'skins.json file not found!');
       }
+    }
   }
 }
