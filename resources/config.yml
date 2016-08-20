@@ -1,8 +1,8 @@
 #Enable changing skins of players on join
 JoinSkins: true
 #Skins need to be base64 encoded!
-#Username of the server owner
-Owner: SalmonDE
+#Playernames of the serverteam members
+ServerTeam: ['SalmonDE', 'SwagGermanyPE', 'LinkGamerXD', 'CRAFTBOYPE', 'fabiangeigerhd', 'adaline_', 'Aericio', 'HydrexHD']
 #Check if skin could be changed on join
 CheckJoinSkin: true
 #Time in seconds when the check should begin
