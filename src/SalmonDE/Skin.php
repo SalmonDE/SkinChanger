@@ -22,7 +22,7 @@ class Skin extends PluginBase implements Listener
           if($this->getConfig()->get('JoinSkins')){
               if(file_exists($this->getDataFolder().'skins.json')){
                   $skins = json_decode(file_get_contents($this->getDataFolder().'skins.json'), true);
-                  }if($event->getPlayer()->getSkinId() == 'Standard_CustomSlim'){
+                  if($event->getPlayer()->getSkinId() == 'Standard_CustomSlim'){
                       $num = mt_rand(1, count($skins['Female']));
                       $joinskin = $skins['Female'][$num];
                   }else{
@@ -46,8 +46,9 @@ class Skin extends PluginBase implements Listener
                   }else{
                       $this->getLogger()->error(TF::RED.'Skin not found!');
                   }
-          }else{
-              $this->getLogger()->error(TF::RED.'skins.json file not found!');
+              }else{
+                  $this->getLogger()->error(TF::RED.'skins.json file not found!');
+              }
           }
         }else{
             $event->getPlayer()->sendTip(TF::GOLD.TF::BOLD.'Willkommen zurück, Teammitglied '.$event->getPlayer()->getName().'!');
