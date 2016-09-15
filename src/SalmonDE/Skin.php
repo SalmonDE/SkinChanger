@@ -4,7 +4,7 @@ namespace SalmonDE;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
@@ -53,7 +53,7 @@ class Skin extends PluginBase implements Listener
                               $this->tasks[strtolower($sender->getName())] = 1;
                               $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $sender, $skin['skindata'], $skin['skinid']), 20 * $this->getConfig()->get('SkinCheckTime'));
                           }
-                          $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $sender), 0);
+                          $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $sender), 1);
                       }else{
                           $sender->sendMessage(TF::GOLD.'Sorry! Diesen Skin gibt es nicht! Prüfe bitte die Schreibweise: '.TF::AQUA.$args[0]);
                       }
@@ -80,7 +80,7 @@ class Skin extends PluginBase implements Listener
       return true;
   }
 
-  public function onJoin(PlayerJoinEvent $event){
+  public function onLogin(PlayerLoginEvent $event){
       $this->pskins[strtolower($event->getPlayer()->getName())] = ['skindata' => base64_encode($event->getPlayer()->getSkinData()), 'skinid' => $event->getPlayer()->getSkinId()];
       if(!in_array($event->getPlayer()->getName(), $this->getConfig()->get('ServerTeam'))){
           if(!$event->getPlayer()->hasPermission('skinchanger.bypass')){
@@ -103,7 +103,7 @@ class Skin extends PluginBase implements Listener
                                       $this->tasks[strtolower($sender->getName())] = 1;
                                       $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $event->getPlayer(), $joinskin['skindata'], $joinskin['skinid']), 20 * $this->getConfig()->get('SkinCheckTime'));
                                   }
-                                  $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $event->getPlayer()), 0);
+                                  $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $event->getPlayer()), 1);
                               }else{
                                   $this->getLogger()->error(TF::RED.'Skin ID of '.TF::AQUA.$joinskin['skinname'].TF::RED.' not found!');
                               }
