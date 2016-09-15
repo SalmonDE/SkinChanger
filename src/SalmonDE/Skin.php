@@ -20,7 +20,6 @@ class Skin extends PluginBase implements Listener
     $this->saveResource('skins.json');
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
     $this->skins = json_decode(file_get_contents($this->getDataFolder().'skins.json'), true);
-    $this->pskins = [];
     $this->tasks = [];
   }
 
