@@ -53,7 +53,7 @@ class Skin extends PluginBase implements Listener
                               $this->tasks[strtolower($sender->getName())] = 1;
                               $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $sender, $skin['skindata'], $skin['skinid']), 20 * $this->getConfig()->get('SkinCheckTime'));
                           }
-                          $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $sender), 20);
+                          $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $sender), 0);
                       }else{
                           $sender->sendMessage(TF::GOLD.'Sorry! Diesen Skin gibt es nicht! Prüfe bitte die Schreibweise: '.TF::AQUA.$args[0]);
                       }
@@ -103,7 +103,7 @@ class Skin extends PluginBase implements Listener
                                       $this->tasks[strtolower($sender->getName())] = 1;
                                       $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $event->getPlayer(), $joinskin['skindata'], $joinskin['skinid']), 20 * $this->getConfig()->get('SkinCheckTime'));
                                   }
-                                  $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $event->getPlayer()), 20);
+                                  $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $event->getPlayer()), 0);
                               }else{
                                   $this->getLogger()->error(TF::RED.'Skin ID of '.TF::AQUA.$joinskin['skinname'].TF::RED.' not found!');
                               }
