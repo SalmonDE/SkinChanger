@@ -4,6 +4,6 @@ JoinSkins: true
 #Playernames of the serverteam members
 ServerTeam: ['SalmonDE', 'SwagGermanyPE', 'LinkGamerXD', 'CRAFTBOYPE', 'fabiangeigerhd', 'adaline_', 'Aericio', 'HydrexHD']
 #Check if skin could be changed on join
-CheckJoinSkin: true
+CheckSkin: true
 #Time in seconds when the check should begin
-SkinCheckTime: 20
+SkinCheckTime: 5

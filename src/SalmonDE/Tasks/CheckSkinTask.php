@@ -8,7 +8,6 @@ use pocketmine\utils\TextFormat as TF;
 class CheckSkinTask extends PluginTask
 {
   public function __construct($owner, $player, $skindata, $skinid){
-      $this->owner = $owner;
       parent::__construct($owner);
       $this->player = $player;
       $this->skindata = $skindata;
@@ -20,10 +19,11 @@ class CheckSkinTask extends PluginTask
           if(!$this->player->getSkinId() == $this->skinid){
               $this->player->kick(TF::AQUA.'Entschuldige, du wurdest gekickt, da dein Skin Format vom Server nicht geändert werden konnte.'."\n".TF::AQUA.'☹', false);
           }else{
-              $this->player->sendTip(TF::GREEN.TF::BOLD.'Du hast den Skin Check bestanden! :)');
+              $this->player->sendPopup(TF::GREEN.TF::BOLD.'Du hast den Skin Check bestanden! :)');
           }
       }else{
           $this->player->kick(TF::AQUA.'Entschuldige, du wurdest gekickt, da dein Skin vom Server nicht geändert werden konnte.'."\n".TF::AQUA.'☹', false);
       }
+      unset($this->getOwner()->tasks[strtolower($this->player->getName())]);
   }
 }

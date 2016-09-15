@@ -1,9 +1,23 @@
 name: SkinChanger
 api: 2.0.0
-version: 1.1.0
+version: 1.2.0
 author: SalmonDE
 main: SalmonDE\Skin
+commands:
+  changeskin:
+    permission: skinchanger.cmd.changeskin
+    description: Lässt dich deinen Skin im Spiel wechseln
+    usage: /changeskin [SkinName] <Spieler>
+  skins:
+    permission: skinchanger.cmd.skins
+    description: Zeigt dir die Standard Skins des Servers an
+    usage: /skins
+    default: true
 permissions:
   skinchanger:
     children:
       skinchanger.bypass:
+      skinchanger.cmd:
+        children:
+          skinchanger.cmd.changeskin:
+          skinchanger.cmd.skins:
