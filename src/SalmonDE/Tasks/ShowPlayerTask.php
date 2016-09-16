@@ -1,6 +1,7 @@
 <?php
 namespace SalmonDE\Tasks;
 
+use pocketmine\entity\Entity;
 use pocketmine\Player;
 use pocketmine\scheduler\PluginTask;
 

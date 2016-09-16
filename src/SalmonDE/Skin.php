@@ -3,6 +3,7 @@ namespace SalmonDE;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\entity\Entity;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\Player;
@@ -47,9 +48,9 @@ class Skin extends PluginBase implements Listener
                           }else{
                               $skin = $this->pskins[strtolower($args[0])];
                           }
-                          $sender->despawnFromAll();
-                          $sender->setSkin(base64_decode($skin['skindata']), $skin['skinid']);
-                          $sender->sendMessage(TF::GREEN.TF::BOLD.'Dein Skin wurde geändert!');
+                          $target->despawnFromAll();
+                          $target->setSkin(base64_decode($skin['skindata']), $skin['skinid']);
+                          $target->sendMessage(TF::GREEN.TF::BOLD.'Dein Skin wurde geändert!');
                           if($this->getConfig()->get('CheckSkin')){
                               $this->tasks[strtolower($target->getName())] = 1;
                               $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $target, $skin['skindata'], $skin['skinid']), 20 * $this->getConfig()->get('SkinCheckTime'));
