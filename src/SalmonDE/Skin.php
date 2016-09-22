@@ -89,10 +89,10 @@ class Skin extends PluginBase implements Listener
               if($this->getConfig()->get('JoinSkins')){
                   if(file_exists($this->getDataFolder().'skins.json')){
                       if($event->getPlayer()->getSkinId() == 'Standard_CustomSlim'){
-                          $num = mt_rand(0, count($this->skins['Female']));
+                          $num = mt_rand(0, count($this->skins['Female'] - 1));
                           $joinskin = $this->skins['Female'][$num];
                       }else{
-                          $num = mt_rand(0, count($this->skins['Male']));
+                          $num = mt_rand(0, count($this->skins['Male'] - 1));
                           $joinskin = $this->skins['Male'][$num];
                       }
                       if(isset($joinskin)){
