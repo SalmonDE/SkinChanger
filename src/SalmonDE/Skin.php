@@ -89,11 +89,13 @@ class Skin extends PluginBase implements Listener
               if($this->getConfig()->get('JoinSkins')){
                   if(file_exists($this->getDataFolder().'skins.json')){
                       if($event->getPlayer()->getSkinId() == 'Standard_CustomSlim'){
-                          $num = mt_rand(0, count($this->skins['Female'] - 1));
-                          $joinskin = $this->skins['Female'][$num];
+                          $count = count($this->skins['Female']);
+                          $num = mt_rand(0, $count - 1);
+                          $joinskin = $this->skins['Female'][array_keys($this->skins['Male'])[$num]];
                       }else{
-                          $num = mt_rand(0, count($this->skins['Male'] - 1));
-                          $joinskin = $this->skins['Male'][$num];
+                          $count = count($this->skins['Male']);
+                          $num = mt_rand(0,  $count - 1);
+                          $joinskin = $this->skins['Male'][array_keys($this->skins['Male'])[$num]];
                       }
                       if(isset($joinskin)){
                           if(isset($joinskin['skindata'])){
@@ -102,7 +104,7 @@ class Skin extends PluginBase implements Listener
                                   $event->getPlayer()->setSkin(base64_decode($joinskin['skindata']), $joinskin['skinid']);
                                   $event->getPlayer()->sendTip(TF::GREEN.TF::BOLD.'Dein Skin wurde geändert!');
                                   if($this->getConfig()->get('CheckSkin')){
-                                      $this->tasks[strtolower($sender->getName())] = 1;
+                                      $this->tasks[strtolower($event->getPlayer()->getName())] = 1;
                                       $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $event->getPlayer(), $joinskin['skindata'], $joinskin['skinid']), 20 * $this->getConfig()->get('SkinCheckTime'));
                                   }
                                   $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $event->getPlayer()), 20);
