@@ -19,10 +19,11 @@ commands:
     default: true
 permissions:
   skinchanger:
+  default: op
     children:
       skinchanger.bypass:
       skinchanger.cmd:
         children:
-          skinchanger.cmd.changeskin:
-          skinchanger.cmd.changecape:
-          skinchanger.cmd.skins:
+          skinchanger.cmd.changeskin: default: op
+          skinchanger.cmd.changecape: default: op
+          skinchanger.cmd.skins: default: op
