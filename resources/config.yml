@@ -2,7 +2,7 @@
 JoinSkins: false
 #Skins need to be base64 encoded!
 #Playernames of the serverteam members
-ServerTeam: ['SalmonDE', 'SwagGermanyPE', 'LinkGamerXD', 'CRAFTBOYPE', 'fabiangeigerhd', 'adaline_', 'Aericio', 'HydrexHD']
+ServerTeam: ['SalmonDE', 'SwagGermanyPE', 'LinkGamerXD', 'CRAFTBOYPE', 'fabiangeigerhd', 'adaline_', 'Aericio', 'HydrexHD', 'KairusDarkSeeker']
 #Check if skin could be changed on join
 CheckSkin: true
 #Time in seconds when the check should begin
