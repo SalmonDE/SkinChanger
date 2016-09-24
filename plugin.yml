@@ -1,6 +1,6 @@
 name: SkinChanger
 api: 2.0.0
-version: 1.2.0
+version: 1.2.1
 author: SalmonDE
 main: SalmonDE\Skin
 commands:
@@ -8,6 +8,10 @@ commands:
     permission: skinchanger.cmd.changeskin
     description: Lässt dich deinen Skin im Spiel wechseln
     usage: /changeskin [SkinName] <Spieler>
+  changecape:
+    permission: skinchanger.cmd.changecape
+    description: Lässt dich deinen Umhang im Spiel wechseln
+    usage: /changeskin [UmhangName] <Spieler>
   skins:
     permission: skinchanger.cmd.skins
     description: Zeigt dir die Standard Skins des Servers an
@@ -20,4 +24,5 @@ permissions:
       skinchanger.cmd:
         children:
           skinchanger.cmd.changeskin:
+          skinchanger.cmd.changecape:
           skinchanger.cmd.skins:
