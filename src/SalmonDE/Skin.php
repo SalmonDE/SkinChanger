@@ -10,6 +10,7 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
 use SalmonDE\Tasks\CheckSkinTask;
+use SalmonDE\Tasks\RankCapeTask;
 use SalmonDE\Tasks\ShowPlayerTask;
 use SalmonDE\Updater\CheckVersionTask;
 use SalmonDE\Updater\UpdaterTask;
@@ -18,16 +19,28 @@ class Skin extends PluginBase implements Listener
 {
 
   public $capes = [
-      'Minecon_MineconSteveCape2011',
-      'Minecon_MineconSteveCape2012',
-      'Minecon_MineconSteveCape2013',
-      'Minecon_MineconSteveCape2015',
-      'Minecon_MineconSteveCape2016',
-      'Minecon_MineconAlexCape2011',
-      'Minecon_MineconAlexCape2012',
-      'Minecon_MineconAlexCape2013',
-      'Minecon_MineconAlexCape2015',
-      'Minecon_MineconAlexCape2016'
+      'Steve' => [
+          'Minecon_MineconSteveCape2011',
+          'Minecon_MineconSteveCape2012',
+          'Minecon_MineconSteveCape2013',
+          'Minecon_MineconSteveCape2015',
+          'Minecon_MineconSteveCape2016',
+      ],
+      'Alex' => [
+          'Minecon_MineconAlexCape2011',
+          'Minecon_MineconAlexCape2012',
+          'Minecon_MineconAlexCape2013',
+          'Minecon_MineconAlexCape2015',
+          'Minecon_MineconAlexCape2016'
+      ]
+  ];
+
+  public $capes2 = [
+      'MineconCape2011',
+      'MineconCape2012',
+      'MineconCape2013',
+      'MineconCape2015',
+      'MineconCape2016'
   ];
 
   public function onEnable(){
@@ -99,7 +112,7 @@ class Skin extends PluginBase implements Listener
           }
       }elseif(strtolower($cmd->getName()) == 'changecape'){
           if(isset($args[0])){
-              if(in_array($args[0], $this->capes)){
+              if(in_array($args[0], $this->capes2)){
                   if(isset($args[1])){
                       $player = $this->getServer()->getPlayer($args[1]);
                       if($player instanceof Player){
@@ -110,14 +123,19 @@ class Skin extends PluginBase implements Listener
                   }else{
                       $target = $sender;
                   }
-                  $target->setSkin($target->getSkinData(), $args[0]);
+                  if($target->getSkinId() == 'Standard_CustomSlim' || $target->getSkinId() == 'Standard_Alex'){
+                      $cape = $this->getCape($args[0], 'Alex');
+                  }else{
+                      $cape = $this->getCape($args[0], 'Steve');
+                  }
+                  $target->setSkin($target->getSkinData(), $cape);
                   $target->sendMessage(TF::GREEN.$this->getMessages()['ChangeCape']['CapeChanged']);
               }else{
                   $sender->sendMessage(TF::RED.$this->getMessages()['ChangeCape']['CapeNotFound']);
               }
           }else{
               $sender->sendMessage(TF::GOLD.$this->getMessages()['ChangeCape']['CapesAvailable']);
-              foreach($this->capes as $cape){
+              foreach($this->capes2 as $cape){
                   $sender->sendMessage(TF::LIGHT_PURPLE.str_ireplace('{cape}', $cape, $this->getMessages()['ChangeCape']['Cape']));
               }
           }
@@ -175,6 +193,20 @@ class Skin extends PluginBase implements Listener
         }else{
             $event->getPlayer()->sendPopup(TF::GOLD.TF::BOLD.str_ireplace('{player}', $event->getPlayer()->getName(), $this->getMessages()['General']['WelcomeBackTeamMember']));
         }
+        if($this->getConfig()->get('Rank-Specific-Capes') && ($pperms = $this->getServer()->getPluginManager()->getPlugin('PurePerms'))){
+            $group = $pperms->getUserDataMgr()->getGroup($event->getPlayer())->getName();
+            if(@$this->getConfig()->get('Rank-Capes')[$group]){
+                if($event->getPlayer()->getSkinId() == 'Standard_CostumSlim' || $event->getPlayer()->getSkinId() == 'Standard_Alex'){
+                    $this->getServer()->getScheduler()->scheduleDelayedTask(new RankCapeTask($this, $event->getPlayer(), $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Alex')), 40);
+                }else{
+                    $this->getServer()->getScheduler()->scheduleDelayedTask(new RankCapeTask($this, $event->getPlayer(), $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Steve')), 40);
+                }
+            }
+        }
+  }
+
+  public function getCape($cape, $skinid){
+      return str_ireplace($this->capes2, $this->capes[$skinid], $cape);
   }
 
   public function update(){

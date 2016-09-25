@@ -1,14 +1,23 @@
-#Enable changing skins of players on join
-JoinSkins: false
-#Skins need to be base64 encoded!
-#Playernames of the serverteam members
+# Enable changing skins of players on join
+JoinSkins: true
+# Skins need to be base64 encoded!
+# Playernames of the serverteam members
 ServerTeam: ['SalmonDE', 'SwagGermanyPE', 'LinkGamerXD', 'CRAFTBOYPE', 'fabiangeigerhd', 'adaline_', 'Aericio', 'HydrexHD', 'KairusDarkSeeker']
-#Check if skin could be changed on join
+# Check if skin could be changed on join
 CheckSkin: true
-#Time in seconds when the check should begin
+# Time in seconds when the check should begin
 SkinCheckTime: 5
 # The current language for the plugin
 # Available languages:
 # eng => English,
 # deu => Deutsch
 Language: deu
+# Needs PurePerms!
+Rank-Specific-Capes: true
+Rank-Capes:
+  Owner: MineconCape2016
+  Admin: MineconCape2011
+  Architekt: MineconCape2013
+  Moderator: MineconCape2013
+  Spieler: MineconCape2012
+  VIP: MineconCape2015
