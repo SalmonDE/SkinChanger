@@ -115,7 +115,7 @@ class Skin extends PluginBase implements Listener
           }else{
               $sender->sendMessage(TF::GOLD.$this->getMessages()['ChangeCape']['CapesAvailable']);
               foreach($this->capes as $cape){
-                  $sender->sendMessage(TF::LIGHT_PURPLE.$this->getMessages()['ChangeCape']['Cape']);
+                  $sender->sendMessage(TF::LIGHT_PURPLE.str_ireplace('{cape}', $cape, $this->getMessages()['ChangeCape']['Cape']));
               }
           }
       }else{
