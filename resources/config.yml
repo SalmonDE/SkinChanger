@@ -7,3 +7,6 @@ ServerTeam: ['SalmonDE', 'SwagGermanyPE', 'LinkGamerXD', 'CRAFTBOYPE', 'fabiange
 CheckSkin: true
 #Time in seconds when the check should begin
 SkinCheckTime: 5
+# The current language for the plugin 
+# Available languages: english, german
+Language: english
