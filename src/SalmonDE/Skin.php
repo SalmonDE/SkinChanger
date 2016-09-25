@@ -10,7 +10,7 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
 use SalmonDE\Tasks\CheckSkinTask;
-use SalmonDE\Tasks\CallableTask;
+use SalmonDE\Tasks\ShowPlayerTask;
 
 class Skin extends PluginBase implements Listener
 {
@@ -28,7 +28,7 @@ class Skin extends PluginBase implements Listener
 
   public function onEnable(){
     @mkdir($this->getDataFolder());
-    $this->saveDefaultConfig();
+    $this->saveResource('config.yml');
     $this->saveResource('skins.json');
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
     $this->skins = json_decode(file_get_contents($this->getDataFolder().'skins.json'), true);
@@ -66,7 +66,7 @@ class Skin extends PluginBase implements Listener
                               $this->tasks[strtolower($target->getName())] = 1;
                               $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $target, $skin['skindata'], $skin['skinid']), 20 * $this->getConfig()->get('SkinCheckTime'));
                           }
-                          $this->getServer()->getScheduler()->scheduleDelayedTask(new CallableTask([$player, "spawnToAll"], $this), 20);
+                          $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $target), 20);
                       }else{
                           $sender->sendMessage(TF::GOLD.'Sorry! Diesen Skin gibt es nicht! Prüfe bitte die Schreibweise: '.TF::AQUA.$args[0]);
                       }
