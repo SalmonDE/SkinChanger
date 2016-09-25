@@ -17,10 +17,12 @@ class Skin extends PluginBase implements Listener
 
   public $capes = [
       'Minecon_MineconSteveCape2011',
+      'Minecon_MineconSteveCape2012',
       'Minecon_MineconSteveCape2013',
       'Minecon_MineconSteveCape2015',
       'Minecon_MineconSteveCape2016',
       'Minecon_MineconAlexCape2011',
+      'Minecon_MineconAlexCape2012',
       'Minecon_MineconAlexCape2013',
       'Minecon_MineconAlexCape2015',
       'Minecon_MineconAlexCape2016'
