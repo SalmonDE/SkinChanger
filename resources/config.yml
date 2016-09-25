@@ -1,3 +1,8 @@
+# Available languages:
+# eng => English,
+# deu => Deutsch,
+Language: deu
+
 # Enable changing skins of players on join
 JoinSkins: true
 # Skins need to be base64 encoded!
@@ -7,12 +12,7 @@ ServerTeam: ['SalmonDE', 'SwagGermanyPE', 'LinkGamerXD', 'CRAFTBOYPE', 'fabiange
 CheckSkin: true
 # Time in seconds when the check should begin
 SkinCheckTime: 5
-# The current language for the plugin
-# Available languages:
-# eng => English,
-# deu => Deutsch
-Language: deu
-# Needs PurePerms!
+# You must have PurePerms for this to work!
 Rank-Specific-Capes: true
 Rank-Capes:
   Owner: MineconCape2016
