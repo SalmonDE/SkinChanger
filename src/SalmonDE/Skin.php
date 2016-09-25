@@ -11,6 +11,8 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
 use SalmonDE\Tasks\CheckSkinTask;
 use SalmonDE\Tasks\ShowPlayerTask;
+use SalmonDE\Updater\CheckVersionTask;
+use SalmonDE\Updater\UpdaterTask;
 
 class Skin extends PluginBase implements Listener
 {
@@ -29,6 +31,7 @@ class Skin extends PluginBase implements Listener
   ];
 
   public function onEnable(){
+    $this->getServer()->getScheduler()->scheduleAsyncTask(new CheckVersionTask($this));
     @mkdir($this->getDataFolder());
     $this->saveResource('config.yml');
     $this->saveResource('skins.json');
@@ -172,5 +175,9 @@ class Skin extends PluginBase implements Listener
         }else{
             $event->getPlayer()->sendPopup(TF::GOLD.TF::BOLD.str_ireplace('{player}', $event->getPlayer()->getName(), $this->getMessages()['General']['WelcomeBackTeamMember']));
         }
+  }
+
+  public function update(){
+      $this->getServer()->getScheduler()->scheduleTask(new UpdaterTask($this, $this->getDescription()->getVersion()));
   }
 }
