@@ -15,6 +15,17 @@ use SalmonDE\Tasks\ShowPlayerTask;
 class Skin extends PluginBase implements Listener
 {
 
+  public $capes = [
+      'Minecon_MineconSteveCape2011',
+      'Minecon_MineconSteveCape2013',
+      'Minecon_MineconSteveCape2015',
+      'Minecon_MineconSteveCape2016',
+      'Minecon_MineconAlexCape2011',
+      'Minecon_MineconAlexCape2013',
+      'Minecon_MineconAlexCape2015',
+      'Minecon_MineconAlexCape2016'
+  ];
+
   public function onEnable(){
     @mkdir($this->getDataFolder());
     $this->saveResource('config.yml');
@@ -70,18 +81,8 @@ class Skin extends PluginBase implements Listener
               $sender->sendMessage(TF::RED.'Du musst ein Spieler sein, um diesen Befehl nutzen zu dürfen!');
           }
       }elseif(strtolower($cmd->getName()) == 'changecape'){
-          $capes = [
-              'Minecon_MineconSteveCape2011',
-              'Minecon_MineconSteveCape2013',
-              'Minecon_MineconSteveCape2015',
-              'Minecon_MineconSteveCape2016',
-              'Minecon_MineconAlexCape2011',
-              'Minecon_MineconAlexCape2013',
-              'Minecon_MineconAlexCape2015',
-              'Minecon_MineconAlexCape2016'
-          ];
           if(isset($args[0])){
-              if(in_array($args[0], $capes)){
+              if(in_array($args[0], $this->capes)){
                   if(isset($args[1])){
                       $player = $this->getServer()->getPlayer($args[1]);
                       if($player instanceof Player){
@@ -99,7 +100,7 @@ class Skin extends PluginBase implements Listener
               }
           }else{
               $sender->sendMessage(TF::GOLD.'Verfügbare Umhänge:');
-              foreach($capes as $cape){
+              foreach($this->capes as $cape){
                   $sender->sendMessage(TF::LIGHT_PURPLE.'Umhang: '.TF::GREEN.$cape);
               }
           }
