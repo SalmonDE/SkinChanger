@@ -2,7 +2,6 @@
 # eng => English,
 # deu => Deutsch,
 Language: deu
-
 # Enable changing skins of players on join
 JoinSkins: true
 # Skins need to be base64 encoded!
