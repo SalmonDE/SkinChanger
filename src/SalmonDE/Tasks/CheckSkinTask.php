@@ -10,8 +10,8 @@ class CheckSkinTask extends PluginTask
   public function __construct($owner, $player, Array $data){
       parent::__construct($owner);
       $this->player = $player;
-      $this->skindata = $data['skindata'];
-      $this->skinid = $data['skinid'];
+      $this->skindata = $data['SkinData'];
+      $this->skinid = $data['SkinID'];
       $this->lang = $owner->getMessages();
   }
 
