@@ -5,6 +5,7 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\entity\Entity;
 use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
@@ -44,9 +45,9 @@ class Skin extends PluginBase implements Listener
   ];
 
   public function onEnable(){
-    $this->getServer()->getScheduler()->scheduleAsyncTask(new CheckVersionTask($this));
     @mkdir($this->getDataFolder());
     $this->saveResource('config.yml');
+    $this->getServer()->getScheduler()->scheduleAsyncTask(new CheckVersionTask($this));
     $this->saveResource('skins.json');
     if(!file_exists($this->getDataFolder().'messages.ini')){
         $this->saveResource(strtolower($this->getConfig()->get('Language')).'.ini');
@@ -193,16 +194,26 @@ class Skin extends PluginBase implements Listener
         }else{
             $event->getPlayer()->sendPopup(TF::GOLD.TF::BOLD.str_ireplace('{player}', $event->getPlayer()->getName(), $this->getMessages()['General']['WelcomeBackTeamMember']));
         }
-        if($this->getConfig()->get('Rank-Specific-Capes') && ($pperms = $this->getServer()->getPluginManager()->getPlugin('PurePerms'))){
-            $group = $pperms->getUserDataMgr()->getGroup($event->getPlayer())->getName();
-            if(@$this->getConfig()->get('Rank-Capes')[$group]){
-                if($event->getPlayer()->getSkinId() == 'Standard_CostumSlim' || $event->getPlayer()->getSkinId() == 'Standard_Alex'){
-                    $this->getServer()->getScheduler()->scheduleDelayedTask(new RankCapeTask($this, $event->getPlayer(), $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Alex')), 40);
-                }else{
-                    $this->getServer()->getScheduler()->scheduleDelayedTask(new RankCapeTask($this, $event->getPlayer(), $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Steve')), 40);
-                }
-            }
-        }
+  }
+
+  public function onJoin(PlayerJoinEvent $event){
+      if($this->getConfig()->get('RemoveCapeOnJoin')){
+          if(in_array($event->getPlayer()->getSkinId(), $this->capes['Steve'])){
+              $event->getPlayer()->setSkin($event->getPlayer()->getSkinData(), 'Standard_Costum');
+          }elseif(in_array($event->getPlayer()->getSkinId(), $this->capes['Alex'])){
+              $event->getPlayer()->setSkin($event->getPlayer()->getSkinData(), 'Standard_CostumSlim');
+          }
+      }
+      if($this->getConfig()->get('Rank-Specific-Capes') && ($pperms = $this->getServer()->getPluginManager()->getPlugin('PurePerms'))){
+          $group = $pperms->getUserDataMgr()->getGroup($event->getPlayer())->getName();
+          if(@$this->getConfig()->get('Rank-Capes')[$group]){
+              if($event->getPlayer()->getSkinId() == 'Standard_CostumSlim' || $event->getPlayer()->getSkinId() == 'Standard_Alex'){
+                  $this->getServer()->getScheduler()->scheduleDelayedTask(new RankCapeTask($this, $event->getPlayer(), $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Alex')), 40);
+              }else{
+                  $this->getServer()->getScheduler()->scheduleDelayedTask(new RankCapeTask($this, $event->getPlayer(), $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Steve')), 40);
+              }
+          }
+      }
   }
 
   public function getCape($cape, $skinid){
