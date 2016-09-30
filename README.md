@@ -1,4 +1,4 @@
-![Alt text](https://salmonde.de/MCPE-Plugins/Pictures/SkinChanger/SkinChangerx96.png "Made by GatorThePlayer")
+![Alt text](https://salmonde.de/MCPE-Plugins/Pictures/SkinChanger/SkinChangerx96.jpg "Made by GatorThePlayer")
 
 # SkinChanger [![Travis-CI](https://travis-ci.org/SalmonGER/SkinChanger.svg?branch=master)](https://travis-ci.org/SalmonGER/SkinChanger)
 
