@@ -12,7 +12,7 @@ commands:
   changecape:
     permission: skinchanger.cmd.changecape
     description: Lässt dich deinen Umhang im Spiel wechseln
-    usage: /changeskin [UmhangName] <Spieler>
+    usage: /changecape [UmhangName] <Spieler>
   skins:
     permission: skinchanger.cmd.skins
     description: Zeigt dir die Standard Skins des Servers an
