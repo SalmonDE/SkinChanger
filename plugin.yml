@@ -22,6 +22,7 @@ permissions:
   skinchanger:
     children:
       skinchanger.bypass:
+        description: This will let you bypass the skin changing on join if it is enabled
       skinchanger.cmd:
         children:
           skinchanger.cmd.changeskin:
