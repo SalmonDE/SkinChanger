@@ -1,9 +1,9 @@
 # Available languages:
 # eng => English,
 # deu => Deutsch,
-Language: deu
+Language: eng
 # Enable changing skins of players on join
-JoinSkins: true
+JoinSkins: false
 # Skins need to be base64 encoded!
 # Playernames of the serverteam members
 ServerTeam: ['SalmonDE', 'SwagGermanyPE', 'LinkGamerXD', 'CRAFTBOYPE', 'fabiangeigerhd', 'adaline_', 'Aericio', 'HydrexHD']
