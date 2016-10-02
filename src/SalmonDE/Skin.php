@@ -78,7 +78,7 @@ class Skin extends PluginBase implements Listener
                               if($target instanceof Player){
                                   $target = $target;
                               }else{
-                                  $sender->sendMessage(TF::RED.str_ireplace('{player}', $args[1], $this->getMessages()['ChangeSkin']['PlayerNotFound']));
+                                  $sender->sendMessage(TF::RED.str_replace('{player}', $args[1], $this->getMessages()['ChangeSkin']['PlayerNotFound']));
                                   return true;
                               }
                           }else{
@@ -100,7 +100,7 @@ class Skin extends PluginBase implements Listener
                           }
                           $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $target), 20);
                       }else{
-                          $sender->sendMessage(TF::GOLD.str_ireplace('{skin}', $args[0], $this->getMessages()['ChangeSkin']['SkinNotFound']));
+                          $sender->sendMessage(TF::GOLD.str_replace('{skin}', $args[0], $this->getMessages()['ChangeSkin']['SkinNotFound']));
                       }
                   }else{
                       $sender->sendMessage(TF::RED.$this->getMessages()['ChangeSkin']['SkinInCheck']);
@@ -138,17 +138,17 @@ class Skin extends PluginBase implements Listener
           }else{
               $sender->sendMessage(TF::GOLD.$this->getMessages()['ChangeCape']['CapesAvailable']);
               foreach($this->capes2 as $cape){
-                  $sender->sendMessage(TF::LIGHT_PURPLE.str_ireplace('{cape}', $cape, $this->getMessages()['ChangeCape']['Cape']));
+                  $sender->sendMessage(TF::LIGHT_PURPLE.str_replace('{cape}', $cape, $this->getMessages()['ChangeCape']['Cape']));
               }
           }
       }else{
           $sender->sendMessage(TF::GOLD.TF::BOLD.$this->getMessages()['General']['Male']);
           foreach($this->skins['Male'] as $skin){
-              $sender->sendMessage(TF::AQUA.str_ireplace(['{skin}', '{id}'], [$skin['skinname'], $skin['skinid']], $this->getMessages()['Skins']['Skin']));
+              $sender->sendMessage(TF::AQUA.str_replace(['{skin}', '{id}'], [$skin['skinname'], $skin['skinid']], $this->getMessages()['Skins']['Skin']));
           }
           $sender->sendMessage(TF::GOLD.TF::BOLD.$this->getMessages()['General']['Female']);
           foreach($this->skins['Female'] as $skin){
-              $sender->sendMessage(TF::LIGHT_PURPLE.str_ireplace(['{skin}', '{id}'], [$skin['skinname'], $skin['skinid']], $this->getMessages()['Skins']['Skin']));
+              $sender->sendMessage(TF::LIGHT_PURPLE.str_replace(['{skin}', '{id}'], [$skin['skinname'], $skin['skinid']], $this->getMessages()['Skins']['Skin']));
           }
       }
       return true;
@@ -183,10 +183,10 @@ class Skin extends PluginBase implements Listener
                                   }
                                   $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $event->getPlayer()), 20);
                               }else{
-                                  $this->getLogger()->error(TF::RED.str_ireplace('{skin}', $joinskin['skinid'], $this->getMessages()['General']['SkinIDNotFound']));
+                                  $this->getLogger()->error(TF::RED.str_replace('{skin}', $joinskin['skinid'], $this->getMessages()['General']['SkinIDNotFound']));
                               }
                           }else{
-                              $this->getLogger()->error(TF::RED.str_ireplace('{skin}', $joinskin['skinname'], $this->getMessages()['General']['SkinDataNotFound']));
+                              $this->getLogger()->error(TF::RED.str_replace('{skin}', $joinskin['skinname'], $this->getMessages()['General']['SkinDataNotFound']));
                           }
                       }else{
                           $this->getLogger()->error(TF::RED.$this->getMessages()['General']['SkinNotFound']);
@@ -195,7 +195,7 @@ class Skin extends PluginBase implements Listener
               }
             }
         }else{
-            $event->getPlayer()->sendPopup(TF::GOLD.TF::BOLD.str_ireplace('{player}', $event->getPlayer()->getName(), $this->getMessages()['General']['WelcomeBackTeamMember']));
+            $event->getPlayer()->sendPopup(TF::GOLD.TF::BOLD.str_replace('{player}', $event->getPlayer()->getName(), $this->getMessages()['General']['WelcomeBackTeamMember']));
         }
   }
 
@@ -232,7 +232,7 @@ class Skin extends PluginBase implements Listener
   }
 
   public function getCape($cape, $skinid){
-      return str_ireplace($this->capes2, $this->capes[$skinid], $cape);
+      return str_replace($this->capes2, $this->capes[$skinid], $cape);
   }
 
   public function update(){
