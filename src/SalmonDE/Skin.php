@@ -7,6 +7,7 @@ use pocketmine\entity\Entity;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerLoginEvent;
+use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
@@ -154,7 +155,9 @@ class Skin extends PluginBase implements Listener
   }
 
   public function onLogin(PlayerLoginEvent $event){
-      $this->pskins[strtolower($event->getPlayer()->getName())] = ['skindata' => base64_encode($event->getPlayer()->getSkinData()), 'skinid' => $event->getPlayer()->getSkinId()];
+      if($this->getConfig()->get('TempSavePlayerSkins')){
+          $this->pskins[strtolower($event->getPlayer()->getName())] = ['skindata' => base64_encode($event->getPlayer()->getSkinData()), 'skinid' => $event->getPlayer()->getSkinId()];
+      }
       if(!in_array($event->getPlayer()->getName(), $this->getConfig()->get('ServerTeam'))){
           if(!$event->getPlayer()->hasPermission('skinchanger.bypass')){
               if($this->getConfig()->get('JoinSkins')){
@@ -209,12 +212,22 @@ class Skin extends PluginBase implements Listener
           if(@$this->getConfig()->get('Rank-Capes')[$group]){
               if($event->getPlayer()->getSkinId() == 'Standard_CostumSlim' || $event->getPlayer()->getSkinId() == 'Standard_Alex'){
                   $this->getServer()->getScheduler()->scheduleDelayedTask(new RankCapeTask($this, $event->getPlayer(), $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Alex')), 40);
-                  $this->pskins[strtolower($event->getPlayer()->getName())]['skinid'] = $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Alex');
+                  if(isset($this->pskins[strtolower($event->getPlayer()->getName())])){
+                      $this->pskins[strtolower($event->getPlayer()->getName())]['skinid'] = $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Alex');
+                  }
               }else{
                   $this->getServer()->getScheduler()->scheduleDelayedTask(new RankCapeTask($this, $event->getPlayer(), $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Steve')), 40);
-                  $this->pskins[strtolower($event->getPlayer()->getName())]['skinid'] = $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Steve');
+                  if(isset($this->pskins[strtolower($event->getPlayer()->getName())])){
+                      $this->pskins[strtolower($event->getPlayer()->getName())]['skinid'] = $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Steve');
+                  }
               }
           }
+      }
+  }
+
+  public function onQuit(PlayerQuitEvent $event){
+      if(isset($this->pskins[strtolower($event->getPlayer()->getName())])){
+          unset($this->pskins[strtolower($event->getPlayer()->getName())]);
       }
   }
 

@@ -4,6 +4,8 @@
 Language: eng
 # Enable changing skins of players on join
 JoinSkins: false
+# Temporary save player skins so they can be used for /changeskin
+TempSavePlayerSkins: true
 # Skins need to be base64 encoded!
 # Playernames of the serverteam members
 ServerTeam: ['SalmonDE', 'SwagGermanyPE', 'LinkGamerXD', 'CRAFTBOYPE', 'fabiangeigerhd', 'adaline_', 'Aericio', 'HydrexHD']
