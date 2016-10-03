@@ -27,13 +27,15 @@ class Skin extends PluginBase implements Listener
           'Minecon_MineconSteveCape2013',
           'Minecon_MineconSteveCape2015',
           'Minecon_MineconSteveCape2016',
+          'Standard_Custom'
       ],
       'Alex' => [
           'Minecon_MineconAlexCape2011',
           'Minecon_MineconAlexCape2012',
           'Minecon_MineconAlexCape2013',
           'Minecon_MineconAlexCape2015',
-          'Minecon_MineconAlexCape2016'
+          'Minecon_MineconAlexCape2016',
+          'Standard_CostumSlim'
       ]
   ];
 
@@ -42,7 +44,7 @@ class Skin extends PluginBase implements Listener
       'MineconCape2012',
       'MineconCape2013',
       'MineconCape2015',
-      'MineconCape2016'
+      'MineconCape2016',
   ];
 
   public function onEnable(){
@@ -57,6 +59,7 @@ class Skin extends PluginBase implements Listener
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
     $this->skins = json_decode(file_get_contents($this->getDataFolder().'skins.json'), true);
     $this->tasks = [];
+    $this->capes2[] = $this->getMessages()['General']['Keiner'];
   }
 
   public function getMessages(){
