@@ -4,6 +4,7 @@ version: 1.2.6
 author: SalmonDE
 authors: [Aericio, KairusDarkSeeker]
 main: SalmonDE\Skin
+website: https://salmonde.de/
 commands:
   changeskin:
     permission: skinchanger.cmd.changeskin
