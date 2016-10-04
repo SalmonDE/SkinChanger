@@ -35,7 +35,7 @@ class Skin extends PluginBase implements Listener
           'Minecon_MineconAlexCape2013',
           'Minecon_MineconAlexCape2015',
           'Minecon_MineconAlexCape2016',
-          'Standard_CostumSlim'
+          'Standard_CustomSlim'
       ]
   ];
 
@@ -205,15 +205,15 @@ class Skin extends PluginBase implements Listener
   public function onJoin(PlayerJoinEvent $event){
       if($this->getConfig()->get('RemoveCapeOnJoin')){
           if(in_array($event->getPlayer()->getSkinId(), $this->capes['Steve'])){
-              $event->getPlayer()->setSkin($event->getPlayer()->getSkinData(), 'Standard_Costum');
+              $event->getPlayer()->setSkin($event->getPlayer()->getSkinData(), 'Standard_Custom');
           }elseif(in_array($event->getPlayer()->getSkinId(), $this->capes['Alex'])){
-              $event->getPlayer()->setSkin($event->getPlayer()->getSkinData(), 'Standard_CostumSlim');
+              $event->getPlayer()->setSkin($event->getPlayer()->getSkinData(), 'Standard_CustomSlim');
           }
       }
       if($this->getConfig()->get('Rank-Specific-Capes') && ($pperms = $this->getServer()->getPluginManager()->getPlugin('PurePerms'))){
           $group = $pperms->getUserDataMgr()->getGroup($event->getPlayer())->getName();
           if(@$this->getConfig()->get('Rank-Capes')[$group]){
-              if($event->getPlayer()->getSkinId() == 'Standard_CostumSlim' || $event->getPlayer()->getSkinId() == 'Standard_Alex'){
+              if($event->getPlayer()->getSkinId() == 'Standard_CustomSlim' || $event->getPlayer()->getSkinId() == 'Standard_Alex'){
                   $this->getServer()->getScheduler()->scheduleDelayedTask(new RankCapeTask($this, $event->getPlayer(), $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Alex')), 40);
                   if(isset($this->pskins[strtolower($event->getPlayer()->getName())])){
                       $this->pskins[strtolower($event->getPlayer()->getName())]['skinid'] = $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Alex');
