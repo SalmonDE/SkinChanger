@@ -14,10 +14,11 @@ Step 3             | Start the server, and SkinChanger has been added to your se
 
 --------------------------------------------------------------------------------
 
-**_Command_**                | **_Description_**                                                                          | **_Permission Node_**
----------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------
-/changeskin [skinname] [player]              | Changes the skin of the command user or the player to the one given in skinname                          | skinchanger.cmd.changeskin
-/changecape [capename] [player]              | Changes the cape of the command user or the player to the one given in capename | skinchanger.cmd.changecape
-/skins    | Shows you skins from the skins.json file                    | skinchanger.cmd.skins
+**_Command_**                   | **_Description_**                                                                          | **_Permission Node_**
+------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------
+/changeskin [skinname] [player] | Changes the skin of the command user or the player to the one given in skinname | skinchanger.cmd.changeskin
+/changecape [capename] [player] | Changes the cape of the command user or the player to the one given in capename | skinchanger.cmd.changecape
+/saveskin [player]              | Saves the skins of a player (**Temporary skin saving must be enabled!**)        | skinchanger.cmd.saveskin
+/skins                          | Shows all skins inside the skins.json file                                      | skinchanger.cmd.skins
 
 --------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 name: SkinChanger
 api: 2.0.0
-version: 1.2.9
+version: 1.3.0
 author: SalmonDE
 authors: [Aericio, KairusDarkSeeker]
 main: SalmonDE\Skin
@@ -14,9 +14,13 @@ commands:
     permission: skinchanger.cmd.changecape
     description: Lässt dich deinen Umhang im Spiel wechseln
     usage: /changecape [UmhangName] <Spieler>
+  saveskin:
+    permission: skinchanger.cmd.saveskin
+    description: Lässt dich den Skin eines Spielers in der skins.json Datei speichern
+    usage: /saveskin [Spieler]
   skins:
     permission: skinchanger.cmd.skins
-    description: Zeigt dir die Standard Skins des Servers an
+    description: Zeigt dir die Skins in der skins.json Datei an
     usage: /skins
     default: true
 permissions:

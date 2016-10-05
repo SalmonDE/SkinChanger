@@ -143,6 +143,39 @@ class Skin extends PluginBase implements Listener
               foreach($this->capes2 as $cape){
                   $sender->sendMessage(TF::LIGHT_PURPLE.str_replace('{cape}', $cape, $this->getMessages()['ChangeCape']['Cape']));
               }
+              return false;
+          }
+      }elseif(strtolower($cmd->getName()) == 'saveskin'){
+          if(isset($args[0]) || count($args) > 1){
+              if($this->getConfig()->get('TempSavePlayerSkins')){
+                  $name = strtolower($args[0]);
+                  if(isset($this->pskins[$name])){
+                      $skinid = $this->getCapelessSkinId($this->pskins[$name]['skinid']);
+                      if($skinid === 'Standard_CustomSlim'){
+                          $gender = 'Female';
+                      }else{
+                          $skinid = 'Standard_Custom';
+                          $gender = 'Male';
+                      }
+                      if(!isset($this->skins[$gender][$name])){
+                          $this->skins[$gender][$name] = [
+                              'skinname' => $args[0],
+                              'skinid' => $skinid,
+                              'skindata' => $this->pskins[$name]['skindata']
+                          ];
+                          file_put_contents($this->getDataFolder().'skins.json', json_encode($this->skins, JSON_PRETTY_PRINT));
+                          $sender->sendMessage(TF::GOLD.str_replace(['{player}', '{gender}'], [$args[0], $this->getMessages()['General'][$gender]], $this->getMessages()['SaveSkin']['SkinSaved']));
+                      }else{
+                          $sender->sendMessage(TF::RED.$this->getMessages()['SaveSkin']['AlreadySaved']);
+                      }
+                  }else{
+                      $sender->sendMessage(TF::RED.str_replace('{player}', $args[0], $this->getMessages()['ChangeSkin']['PlayerNotFound']));
+                  }
+              }else{
+                  $sender->sendMessage(TF::RED.$this->getMessages()['SaveSkin']['Disabled']);
+              }
+          }else{
+              return false;
           }
       }else{
           $sender->sendMessage(TF::GOLD.TF::BOLD.$this->getMessages()['General']['Male']);
@@ -236,6 +269,15 @@ class Skin extends PluginBase implements Listener
 
   public function getCape($cape, $skinid){
       return str_replace($this->capes2, $this->capes[$skinid], $cape);
+  }
+
+  public function getCapelessSkinId($skinid){
+      if(in_array($skinid, $this->capes['Alex'])){
+          $skinid = 'Standard_CustomSlim';
+      }elseif(in_array($skinid, $this->capes['Steve'])){
+          $skindid = 'Standard_Custom';
+      }
+      return $skinid;
   }
 
   public function update(){
