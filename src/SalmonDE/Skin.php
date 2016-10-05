@@ -20,6 +20,8 @@ use SalmonDE\Updater\UpdaterTask;
 class Skin extends PluginBase implements Listener
 {
 
+  public $delay = 2;
+
   public $capes = [
       'Steve' => [
           'Minecon_MineconSteveCape2011',
@@ -101,7 +103,7 @@ class Skin extends PluginBase implements Listener
                               $this->tasks[strtolower($target->getName())] = 1;
                               $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $target, ['SkinData' => $skin['skindata'], 'SkinID' => $skin['skinid']]), 20 * $this->getConfig()->get('SkinCheckTime'));
                           }
-                          $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $target), 20);
+                          $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $target), $this->delay);
                       }else{
                           $sender->sendMessage(TF::GOLD.str_replace('{skin}', $args[0], $this->getMessages()['ChangeSkin']['SkinNotFound']));
                       }
@@ -213,7 +215,7 @@ class Skin extends PluginBase implements Listener
                                       $this->tasks[strtolower($event->getPlayer()->getName())] = 1;
                                       $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $event->getPlayer(), ['SkinData' => $joinskin['skindata'], 'SkinID' => $joinskin['skinid']]), 20 * $this->getConfig()->get('SkinCheckTime'));
                                   }
-                                  $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $event->getPlayer()), 20);
+                                  $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $event->getPlayer()), $this->delay);
                               }else{
                                   $this->getLogger()->error(TF::RED.str_replace('{skin}', $joinskin['skinid'], $this->getMessages()['General']['SkinIDNotFound']));
                               }
