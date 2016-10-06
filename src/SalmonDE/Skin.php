@@ -243,7 +243,8 @@ class Skin extends PluginBase implements Listener
       }
       if($this->getConfig()->get('Rank-Specific-Capes') && ($pperms = $this->getServer()->getPluginManager()->getPlugin('PurePerms'))){
           $group = $pperms->getUserDataMgr()->getGroup($event->getPlayer())->getName();
-          if(@$this->getConfig()->get('Rank-Capes')[$group]){
+          $groupcapes = $this->getConfig()->get('Rank-Capes');
+          if(isset($groupcapes[$group])){
               if($event->getPlayer()->getSkinId() == 'Standard_CustomSlim' || $event->getPlayer()->getSkinId() == 'Standard_Alex'){
                   $this->getServer()->getScheduler()->scheduleDelayedTask(new RankCapeTask($this, $event->getPlayer(), $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Alex')), 40);
                   if(isset($this->pskins[strtolower($event->getPlayer()->getName())])){
