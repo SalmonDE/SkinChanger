@@ -14,6 +14,6 @@ class RankCapeTask extends PluginTask
     }
 
     public function onRun($currenttick){
-        $this->player->setSkin($this->player->getSkinData(), $this->skinid);;
+        $this->player->setSkin($this->player->getSkinData(), $this->skinid);
     }
 }
