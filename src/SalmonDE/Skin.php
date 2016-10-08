@@ -96,7 +96,10 @@ class Skin extends PluginBase implements Listener
       'Halloween_MooshroomCostume', // #BlameShoghicp ?
       'Halloween_PinkSheepCostume',
       'Halloween_ZombiePigmanCostume',
-      'CityFolk_Barmaid'
+      'CityFolk_Barmaid',
+      'TownFolk_Bandit',
+      'TownFolk_Shopkeeper',
+      'TownFolk_Witch'
   ];
 
   public $capes = [
