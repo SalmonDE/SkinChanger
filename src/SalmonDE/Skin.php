@@ -22,6 +22,19 @@ class Skin extends PluginBase implements Listener
 
   public $delay = 2;
 
+  public $femaleskinids = [
+      'Standard_Custom',
+      'Standard_Alex',
+      'CampfireTales_CampfireTalesTheLapisLady',
+      'CampfireTales_CampfireTalesTheSham',
+      'CampfireTales_CampfireTalesRancidAnne',
+      'CampfireTales_CampfireTalesFarlander',
+      'CampfireTales_CampfireTalesTheArisenRose',
+      'CampfireTales_CampfireTalesSilksnatcher',
+      'CampfireTales_CampfireTalesTheWellWisher'
+
+  ];
+
   public $capes = [
       'Steve' => [
           'Minecon_MineconSteveCape2011',
@@ -130,7 +143,7 @@ class Skin extends PluginBase implements Listener
                   }else{
                       $target = $sender;
                   }
-                  if($target->getSkinId() == 'Standard_CustomSlim' || $target->getSkinId() == 'Standard_Alex'){
+                  if(in_array($target->getSkinId(), $this->femaleskinids)){
                       $cape = $this->getCape($args[0], 'Alex');
                   }else{
                       $cape = $this->getCape($args[0], 'Steve');
@@ -200,7 +213,7 @@ class Skin extends PluginBase implements Listener
           if(!$event->getPlayer()->hasPermission('skinchanger.bypass')){
               if($this->getConfig()->get('JoinSkins')){
                   if(file_exists($this->getDataFolder().'skins.json')){
-                      if($event->getPlayer()->getSkinId() == 'Standard_CustomSlim' || $event->getPlayer()->getSkinId() == 'Standard_Alex'){
+                      if(in_array($event->getPlayer()->getSkinId(), $this->femaleskinids)){
                           $joinskin = $this->skins['Female'][array_rand($this->skins['Female'])];
                       }else{
                           $joinskin = $this->skins['Male'][array_rand($this->skins['Male'])];
@@ -245,7 +258,7 @@ class Skin extends PluginBase implements Listener
           $group = $pperms->getUserDataMgr()->getGroup($event->getPlayer())->getName();
           $groupcapes = $this->getConfig()->get('Rank-Capes');
           if(isset($groupcapes[$group])){
-              if($event->getPlayer()->getSkinId() == 'Standard_CustomSlim' || $event->getPlayer()->getSkinId() == 'Standard_Alex'){
+              if(in_array($event->getPlayer()->getSkinId(), $this->femaleskinids)){
                   $this->getServer()->getScheduler()->scheduleDelayedTask(new RankCapeTask($this, $event->getPlayer(), $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Alex')), 40);
                   if(isset($this->pskins[strtolower($event->getPlayer()->getName())])){
                       $this->pskins[strtolower($event->getPlayer()->getName())]['skinid'] = $this->getCape($this->getConfig()->get('Rank-Capes')[$group], 'Alex');
