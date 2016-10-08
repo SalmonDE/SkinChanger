@@ -20,7 +20,7 @@ use SalmonDE\Updater\UpdaterTask;
 class Skin extends PluginBase implements Listener
 {
 
-  public $delay = 2;
+  public $delay = 4;
 
   // These SkinIDs could be wrong and have to be checked again!
   public $femaleskinids = [
