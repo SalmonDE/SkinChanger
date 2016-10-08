@@ -70,7 +70,14 @@ class Skin extends PluginBase implements Listener
       'JTTW_JTTWScorpionDemon',
       'JTTW_JTTWPrincessIronFan',
       'JTTW_JTTWSpiderDemon',
-      'JTTW_JTTWXuangzang'
+      'JTTW_JTTWXuangzang',
+      'Festive_FestiveSweaterAlex',
+      'Festive_FestiveMrsClaus',
+      'Festive_FestiveMotherChristmas',
+      'Festive_FestiveTomte',
+      'Festive_FestivePajamaKid',
+      'Festive_FestiveSkiBibs',
+      'Festive_FestiveGingerbreadCreeper'
   ];
 
   public $capes = [
