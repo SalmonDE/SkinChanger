@@ -89,7 +89,13 @@ class Skin extends PluginBase implements Listener
       'PvPWarriors_DesertTamer',
       'PvPWarriors_DesertArcher',
       'PvPWarriors_DesertBrawler',
-      'PvPWarriors_DesertHusk'
+      'PvPWarriors_DesertHusk',
+      'Halloween_IronGolemCostume',
+      'Halloween_EndermanCostume',
+      'Halloween_GhastCostume',
+      'Halloween_MooshroomCostume', // #BlameShoghicp ?
+      'Halloween_PinkSheepCostume',
+      'Halloween_ZombiePigmanCostume'
   ];
 
   public $capes = [
