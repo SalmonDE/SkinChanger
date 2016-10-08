@@ -44,7 +44,18 @@ class Skin extends PluginBase implements Listener
       'Villains_VillainsSilverfishMonger',
       'Villains_VillainsSlymime',
       'Villains_VillainsSwindler',
-      'Villains_VillainsTerrorSpawner'
+      'Villains_VillainsTerrorSpawner',
+      'Biome2_Biome2MushroomArcherSlim',
+      'Biome2_Biome2MushroomBrawlerSlim',
+      'Biome2_Biome2MushroomExplorerSlim',
+      'Biome2_Biome2MushroomFarmerSlim',
+      'Biome2_Biome2MushroomHunterSlim',
+      'Biome2_Biome2NetherTamerSlim',
+      'Biome2_Biome2NetherEngineer',
+      'Biome2_Biome2NetherExtinguisher',
+      'Biome2_Biome2NetherFarmer',
+      'Biome2_Biome2NetherGrieferSlim',
+      'Biome2_Biome2NetherMiner'
   ];
 
   public $capes = [
