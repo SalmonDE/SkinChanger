@@ -64,7 +64,13 @@ class Skin extends PluginBase implements Listener
       'Redstone_RedstoneProgrammer',
       'Redstone_RedstoneProspector',
       'Redstone_RedstoneArchitect',
-      'Redstone_RedstoneRailRider'
+      'Redstone_RedstoneRailRider',
+      'JTTW_JTTWGuanyin',
+      'JTTW_JTTWBaigujing',
+      'JTTW_JTTWScorpionDemon',
+      'JTTW_JTTWPrincessIronFan',
+      'JTTW_JTTWSpiderDemon',
+      'JTTW_JTTWXuangzang'
   ];
 
   public $capes = [
