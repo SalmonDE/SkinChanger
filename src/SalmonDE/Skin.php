@@ -314,7 +314,6 @@ class Skin extends PluginBase implements Listener
   }
 
   public function onJoin(PlayerJoinEvent $event){
-      var_dump($event->getPlayer()->getSkinId());
       if($this->getConfig()->get('RemoveCapeOnJoin')){
           if(in_array($event->getPlayer()->getSkinId(), $this->capes['Steve'])){
               $event->getPlayer()->setSkin($event->getPlayer()->getSkinData(), 'Standard_Custom');
