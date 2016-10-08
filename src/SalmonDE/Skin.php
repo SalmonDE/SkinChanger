@@ -77,7 +77,7 @@ class Skin extends PluginBase implements Listener
       'Festive_FestiveTomte',
       'Festive_FestivePajamaKid',
       'Festive_FestiveSkiBibs',
-      'Festive_FestiveGingerbreadCreeper'
+      'Festive_FestiveGingerbreadCreeper',
       'PvPWarriors_TundraBrewer',
       'PvPWarriors_TundraGriefer',
       'PvPWarriors_TundraHunter',
@@ -95,7 +95,8 @@ class Skin extends PluginBase implements Listener
       'Halloween_GhastCostume',
       'Halloween_MooshroomCostume', // #BlameShoghicp ?
       'Halloween_PinkSheepCostume',
-      'Halloween_ZombiePigmanCostume'
+      'Halloween_ZombiePigmanCostume',
+      'CityFolk_Barmaid'
   ];
 
   public $capes = [
