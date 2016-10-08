@@ -23,7 +23,7 @@ class Skin extends PluginBase implements Listener
   public $delay = 2;
 
   public $femaleskinids = [
-      'Standard_Custom',
+      'Standard_CustomSlim',
       'Standard_Alex',
       'CampfireTales_CampfireTalesTheLapisLady',
       'CampfireTales_CampfireTalesTheSham',
@@ -31,8 +31,20 @@ class Skin extends PluginBase implements Listener
       'CampfireTales_CampfireTalesFarlander',
       'CampfireTales_CampfireTalesTheArisenRose',
       'CampfireTales_CampfireTalesSilksnatcher',
-      'CampfireTales_CampfireTalesTheWellWisher'
-
+      'CampfireTales_CampfireTalesTheWellWisher',
+      'Minecon_MineconAlexCape2011',
+      'Minecon_MineconAlexCape2012',
+      'Minecon_MineconAlexCape2013',
+      'Minecon_MineconAlexCape2015',
+      'Minecon_MineconAlexCape2016',
+      'Villains_VillainsStrongholdSeer',
+      'Villains_VillainsDungeonSpector',
+      'Villains_VillainsEndergaunt',
+      'Villains_VillainsLavaFiend',
+      'Villains_VillainsSilverfishMonger',
+      'Villains_VillainsSlymime',
+      'Villains_VillainsSwindler',
+      'Villains_VillainsTerrorSpawner'
   ];
 
   public $capes = [
@@ -247,6 +259,7 @@ class Skin extends PluginBase implements Listener
   }
 
   public function onJoin(PlayerJoinEvent $event){
+      var_dump($event->getPlayer()->getSkinId());
       if($this->getConfig()->get('RemoveCapeOnJoin')){
           if(in_array($event->getPlayer()->getSkinId(), $this->capes['Steve'])){
               $event->getPlayer()->setSkin($event->getPlayer()->getSkinData(), 'Standard_Custom');
