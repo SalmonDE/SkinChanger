@@ -22,6 +22,7 @@ class Skin extends PluginBase implements Listener
 
   public $delay = 2;
 
+  // These SkinIDs could be wrong and have to be checked again!
   public $femaleskinids = [
       'Standard_CustomSlim',
       'Standard_Alex',
@@ -45,17 +46,25 @@ class Skin extends PluginBase implements Listener
       'Villains_VillainsSlymime',
       'Villains_VillainsSwindler',
       'Villains_VillainsTerrorSpawner',
-      'Biome2_Biome2MushroomArcherSlim',
-      'Biome2_Biome2MushroomBrawlerSlim',
-      'Biome2_Biome2MushroomExplorerSlim',
-      'Biome2_Biome2MushroomFarmerSlim',
-      'Biome2_Biome2MushroomHunterSlim',
-      'Biome2_Biome2NetherTamerSlim',
+      'Biome2_Biome2MushroomArcher',
+      'Biome2_Biome2MushroomBrawler',
+      'Biome2_Biome2MushroomExplorer',
+      'Biome2_Biome2MushroomFarmer',
+      'Biome2_Biome2MushroomHunter',
+      'Biome2_Biome2NetherTamer',
       'Biome2_Biome2NetherEngineer',
       'Biome2_Biome2NetherExtinguisher',
       'Biome2_Biome2NetherFarmer',
-      'Biome2_Biome2NetherGrieferSlim',
-      'Biome2_Biome2NetherMiner'
+      'Biome2_Biome2NetherGriefer',
+      'Biome2_Biome2NetherMiner',
+      'Redstone_RedstoneArtisan',
+      'Redstone_RedstoneExperimenter',
+      'Redstone_RedstoneTrapper',
+      'Redstone_RedstoneMiner',
+      'Redstone_RedstoneProgrammer',
+      'Redstone_RedstoneProspector',
+      'Redstone_RedstoneArchitect',
+      'Redstone_RedstoneRailRider'
   ];
 
   public $capes = [
