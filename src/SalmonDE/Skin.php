@@ -78,6 +78,18 @@ class Skin extends PluginBase implements Listener
       'Festive_FestivePajamaKid',
       'Festive_FestiveSkiBibs',
       'Festive_FestiveGingerbreadCreeper'
+      'PvPWarriors_TundraBrewer',
+      'PvPWarriors_TundraGriefer',
+      'PvPWarriors_TundraHunter',
+      'PvPWarriors_ForestGriefer',
+      'PvPWarriors_ForestEngineer',
+      'PvPWarriors_ForestHunter',
+      'PvPWarriors_ForestTamer',
+      'PvPWarriors_ForestWoodbeast',
+      'PvPWarriors_DesertTamer',
+      'PvPWarriors_DesertArcher',
+      'PvPWarriors_DesertBrawler',
+      'PvPWarriors_DesertHusk'
   ];
 
   public $capes = [
