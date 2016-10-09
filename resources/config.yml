@@ -10,9 +10,9 @@ JoinSkins: false
 TempSavePlayerSkins: true
 # Skins need to be base64 encoded!
 # Playernames of the serverteam members
-ServerTeam: ['SalmonDE', 'SwagGermanyPE', 'LinkGamerXD', 'CRAFTBOYPE', 'fabiangeigerhd', 'adaline_', 'Aericio', 'HydrexHD']
+ServerTeam: ['SalmonDE', 'SwagGermanyPE', 'LinkGamerXD', 'CRAFTBOYPE', 'fabiangeigerhd', 'adalin3', 'Aericio', 'HydrexHD', 'ChaosmasterLP']
 # Check if skin could be changed on join
-CheckSkin: true
+CheckSkin: false
 # Time in seconds when the check should begin
 SkinCheckTime: 5
 RemoveCapeOnJoin: true
