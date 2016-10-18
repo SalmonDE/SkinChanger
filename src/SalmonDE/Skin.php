@@ -109,7 +109,7 @@ class Skin extends PluginBase implements Listener
           'Minecon_MineconSteveCape2013',
           'Minecon_MineconSteveCape2015',
           'Minecon_MineconSteveCape2016',
-          'Standard_Custom'
+          'Standard_Custom' // Just here to make the plugin able to remove capes (THIS IS NOT A CAPE)
       ],
       'Alex' => [
           'Minecon_MineconAlexCape2011',
@@ -117,7 +117,7 @@ class Skin extends PluginBase implements Listener
           'Minecon_MineconAlexCape2013',
           'Minecon_MineconAlexCape2015',
           'Minecon_MineconAlexCape2016',
-          'Standard_CustomSlim'
+          'Standard_CustomSlim' // Just here to make the plugin able to remove capes (THIS IS NOT A CAPE)
       ]
   ];
 
