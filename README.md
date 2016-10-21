@@ -2,7 +2,6 @@
 
 # SkinChanger [![Travis-CI](https://travis-ci.org/SalmonGER/SkinChanger.svg?branch=master)](https://travis-ci.org/SalmonGER/SkinChanger)
 
-# CURRENTLY 0.16 INCOMPATIBLE!
 ## Information
 
 **Want to test the features before using them? Test them on this server: salmonde.de:19132**
