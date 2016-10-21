@@ -8,9 +8,6 @@ Auto-Update: true
 JoinSkins: false
 # Temporary save player skins so they can be used for /changeskin
 TempSavePlayerSkins: true
-# Skins need to be base64 encoded!
-# Playernames of the serverteam members
-ServerTeam: ['SalmonDE', 'SwagGermanyPE', 'LinkGamerXD', 'CRAFTBOYPE', 'fabiangeigerhd', 'adalin3', 'Aericio', 'HydrexHD', 'ChaosmasterLP']
 # Check if skin could be changed on join
 CheckSkin: false
 # Time in seconds when the check should begin
