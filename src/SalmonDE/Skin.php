@@ -276,41 +276,37 @@ class Skin extends PluginBase implements Listener
       if($this->getConfig()->get('TempSavePlayerSkins')){
           $this->pskins[strtolower($event->getPlayer()->getName())] = ['skindata' => base64_encode($event->getPlayer()->getSkinData()), 'skinid' => $event->getPlayer()->getSkinId()];
       }
-      if(!in_array($event->getPlayer()->getName(), $this->getConfig()->get('ServerTeam'))){
-          if(!$event->getPlayer()->hasPermission('skinchanger.bypass')){
-              if($this->getConfig()->get('JoinSkins')){
-                  if(file_exists($this->getDataFolder().'skins.json')){
-                      if(in_array($event->getPlayer()->getSkinId(), $this->femaleskinids)){
-                          $joinskin = $this->skins['Female'][array_rand($this->skins['Female'])];
-                      }else{
-                          $joinskin = $this->skins['Male'][array_rand($this->skins['Male'])];
-                      }
-                      if(isset($joinskin)){
-                          if(isset($joinskin['skindata'])){
-                              if(isset($joinskin['skinid'])){
-                                  $event->getPlayer()->despawnFromAll();
-                                  $event->getPlayer()->setSkin(base64_decode($joinskin['skindata']), $joinskin['skinid']);
-                                  $event->getPlayer()->sendTip(TF::GREEN.TF::BOLD.$this->getMessages()['ChangeSkin']['SkinChanged']);
-                                  if($this->getConfig()->get('CheckSkin')){
-                                      $this->tasks[strtolower($event->getPlayer()->getName())] = 1;
-                                      $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $event->getPlayer(), ['SkinData' => $joinskin['skindata'], 'SkinID' => $joinskin['skinid']]), 20 * $this->getConfig()->get('SkinCheckTime'));
-                                  }
-                                  $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $event->getPlayer()), $this->delay);
-                              }else{
-                                  $this->getLogger()->error(TF::RED.str_replace('{skin}', $joinskin['skinid'], $this->getMessages()['General']['SkinIDNotFound']));
+      if(!$event->getPlayer()->hasPermission('skinchanger.bypass')){
+          if($this->getConfig()->get('JoinSkins')){
+              if(file_exists($this->getDataFolder().'skins.json')){
+                  if(in_array($event->getPlayer()->getSkinId(), $this->femaleskinids)){
+                      $joinskin = $this->skins['Female'][array_rand($this->skins['Female'])];
+                  }else{
+                      $joinskin = $this->skins['Male'][array_rand($this->skins['Male'])];
+                  }
+                  if(isset($joinskin)){
+                      if(isset($joinskin['skindata'])){
+                          if(isset($joinskin['skinid'])){
+                              $event->getPlayer()->despawnFromAll();
+                              $event->getPlayer()->setSkin(base64_decode($joinskin['skindata']), $joinskin['skinid']);
+                              $event->getPlayer()->sendTip(TF::GREEN.TF::BOLD.$this->getMessages()['ChangeSkin']['SkinChanged']);
+                              if($this->getConfig()->get('CheckSkin')){
+                                  $this->tasks[strtolower($event->getPlayer()->getName())] = 1;
+                                  $this->getServer()->getScheduler()->scheduleDelayedTask(new CheckSkinTask($this, $event->getPlayer(), ['SkinData' => $joinskin['skindata'], 'SkinID' => $joinskin['skinid']]), 20 * $this->getConfig()->get('SkinCheckTime'));
                               }
+                              $this->getServer()->getScheduler()->scheduleDelayedTask(new ShowPlayerTask($this, $event->getPlayer()), $this->delay);
                           }else{
-                              $this->getLogger()->error(TF::RED.str_replace('{skin}', $joinskin['skinname'], $this->getMessages()['General']['SkinDataNotFound']));
+                              $this->getLogger()->error(TF::RED.str_replace('{skin}', $joinskin['skinid'], $this->getMessages()['General']['SkinIDNotFound']));
                           }
                       }else{
-                          $this->getLogger()->error(TF::RED.$this->getMessages()['General']['SkinNotFound']);
+                          $this->getLogger()->error(TF::RED.str_replace('{skin}', $joinskin['skinname'], $this->getMessages()['General']['SkinDataNotFound']));
                       }
+                  }else{
+                      $this->getLogger()->error(TF::RED.$this->getMessages()['General']['SkinNotFound']);
                   }
               }
-            }
-        }else{
-            $event->getPlayer()->sendPopup(TF::GOLD.TF::BOLD.str_replace('{player}', $event->getPlayer()->getName(), $this->getMessages()['General']['WelcomeBackTeamMember']));
-        }
+          }
+      }
   }
 
   public function onJoin(PlayerJoinEvent $event){
