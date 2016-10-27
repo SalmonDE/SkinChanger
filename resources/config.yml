@@ -1,6 +1,7 @@
 # Available languages:
 # eng => English,
 # deu => Deutsch,
+# rus => Russian,
 Language: eng
 # Enable auto updating
 Auto-Update: true
