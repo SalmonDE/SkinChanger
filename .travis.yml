@@ -1,7 +1,7 @@
 language: php
 
 php:
- - 7.0.10
+ - 7.0.15
 
 branches:
  - master
@@ -11,17 +11,17 @@ before_script:
  - phpenv config-rm xdebug.ini
  - pecl install channel://pecl.php.net/pthreads-3.1.6
  - pecl install channel://pecl.php.net/weakref-0.3.2
- - echo | pecl install channel://pecl.php.net/yaml-2.0.0RC8
- - git clone --depth=50 --branch=php7 https://github.com/ClearSkyTeam/ClearSky.git
- - mkdir -p ClearSky/plugins/SkinChanger-src
- - cp -rf SalmonGER/SkinChanger/src ClearSky/plugins/SkinChanger-src
- - cp -rf SalmonGER/SkinChanger/resources ClearSky/plugins/SkinChanger-src
- - cp -rf SalmonGER/SkinChanger/plugin.yml ClearSky/plugins/SkinChanger-src
- - cp -rf SalmonGER/SkinChanger/LICENSE ClearSky/plugins/SkinChanger-src
- - cp -rf SalmonGER/SkinChanger/build.php ClearSky/
- - cd ClearSky/plugins/
+ - echo | pecl install channel://pecl.php.net/yaml-2.0.0
+ - git clone --recursive --depth=50 --branch=master https://github.com/pmmp/PocketMine-MP.git
+ - mkdir -p PocketMine-MP/plugins/SkinChanger-src
+ - cp -rf SalmonDE/SkinChanger/src PocketMine-MP/plugins/SkinChanger-src
+ - cp -rf SalmonDE/SkinChanger/resources PocketMine-MP/plugins/SkinChanger-src
+ - cp -rf SalmonDE/SkinChanger/plugin.yml PocketMine-MP/plugins/SkinChanger-src
+ - cp -rf SalmonDE/SkinChanger/LICENSE PocketMine-MP/plugins/SkinChanger-src
+ - cp -rf SalmonDE/SkinChanger/build.php PocketMine-MP/
+ - cd PocketMine-MP/plugins/
  - wget -O DevTools.phar https://github.com/PocketMine/DevTools/releases/download/v1.11.0/DevTools_v1.11.0.phar
- - cd /home/travis/build/ClearSky
+ - cd /home/travis/build/PocketMine-MP
 
 script:
  - php build.php
@@ -29,7 +29,7 @@ script:
 deploy:
   provider: releases
   api_key: "$traviskey"
-  file: "/home/travis/build/ClearSky/plugins/DevTools/SkinChanger.phar"
+  file: "/home/travis/build/PocketMine-MP/plugins/DevTools/SkinChanger.phar"
   skip_cleanup: true
   overwrite: true
   on:

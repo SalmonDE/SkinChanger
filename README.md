@@ -1,6 +1,6 @@
 ![Alt text](https://salmonde.de/MCPE-Plugins/Pictures/SkinChanger/SkinChangerx96.jpg "Made by GatorThePlayer")
 
-# SkinChanger [![Travis-CI](https://travis-ci.org/SalmonGER/SkinChanger.svg?branch=master)](https://travis-ci.org/SalmonGER/SkinChanger)
+# SkinChanger [![Travis-CI](https://travis-ci.org/SalmonDE/SkinChanger.svg?branch=master)](https://travis-ci.org/SalmonDE/SkinChanger)
 
 ## Information
 
@@ -8,7 +8,7 @@
 
 **_Installation_** | **_StatsPE_**
 ------------------ | -------------------------------------------------------------------------------------------------------------------
-Step 1             | Download the plugin [here](https://github.com/SalmonGER/SkinChanger/releases/latest/) to get the latest pre-built phar!
+Step 1             | Download the plugin [here](https://github.com/SalmonDE/SkinChanger/releases/latest/) to get the latest pre-built phar!
 Step 2             | After it has downloaded, drag the plugin into your **plugins** folder of your server files.
 Step 3             | Start the server, and SkinChanger has been added to your server!
 
