@@ -1,5 +1,5 @@
 <?php
-namespace SalmonDE\Tasks;
+namespace SalmonDE\SkinChanger\Tasks;
 
 use pocketmine\scheduler\PluginTask;
 use pocketmine\Server;

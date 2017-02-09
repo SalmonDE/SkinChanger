@@ -1,6 +1,6 @@
 name: SkinChanger
 api: [2.0.0, 3.0.0-ALPHA1, 3.0.0-ALPHA2, 3.0.0-ALPHA3]
-version: 1.3.9
+version: 1.3.10
 author: SalmonDE
 authors: [Aericio, KairusDarkSeeker]
 main: SalmonDE\Skin

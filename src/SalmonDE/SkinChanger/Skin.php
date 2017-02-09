@@ -1,5 +1,5 @@
 <?php
-namespace SalmonDE;
+namespace SalmonDE\SkinChanger;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -11,11 +11,9 @@ use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat as TF;
-use SalmonDE\Tasks\CheckSkinTask;
-use SalmonDE\Tasks\RankCapeTask;
-use SalmonDE\Tasks\ShowPlayerTask;
-use SalmonDE\Updater\CheckVersionTask;
-use SalmonDE\Updater\UpdaterTask;
+use SalmonDE\SkinChanger\Tasks\CheckSkinTask;
+use SalmonDE\SkinChanger\Tasks\RankCapeTask;
+use SalmonDE\SkinChanger\Tasks\ShowPlayerTask;
 
 class Skin extends PluginBase implements Listener
 {
