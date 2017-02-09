@@ -132,7 +132,6 @@ class Skin extends PluginBase implements Listener
   public function onEnable(){
     @mkdir($this->getDataFolder());
     $this->saveResource('config.yml');
-    $this->getServer()->getScheduler()->scheduleAsyncTask(new CheckVersionTask($this));
     $this->saveResource('skins.json');
     if(!file_exists($this->getDataFolder().'messages.ini')){
         $this->saveResource(strtolower($this->getConfig()->get('Language')).'.ini');
@@ -142,6 +141,11 @@ class Skin extends PluginBase implements Listener
     $this->skins = json_decode(file_get_contents($this->getDataFolder().'skins.json'), true);
     $this->tasks = [];
     $this->capes2[] = $this->getMessages()['General']['Keiner'];
+    $this->runUpdateManager();
+  }
+
+  public function runUpdateManager(){
+	    \SalmonDE\Updater\UpdateManager::getNew($this->getFile(), $this, $this->getConfig()->get('Auto-Update'))->start();
   }
 
   public function getMessages(){
@@ -353,9 +357,5 @@ class Skin extends PluginBase implements Listener
           $skindid = 'Standard_Custom';
       }
       return $skinid;
-  }
-
-  public function update(){
-      $this->getServer()->getScheduler()->scheduleTask(new UpdaterTask($this, $this->getDescription()->getVersion()));
   }
 }
