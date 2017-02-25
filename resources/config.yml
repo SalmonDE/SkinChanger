@@ -2,6 +2,7 @@
 # eng => English,
 # deu => Deutsch,
 # rus => Russian,
+# kor => Korean,
 Language: eng
 # Enable auto updating
 Auto-Update: true
