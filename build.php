@@ -19,6 +19,10 @@ if(count(glob('plugins/DevTools/SkinChanger*.phar')) === 0){
 }else{
     $fn = glob('plugins/DevTools/SkinChanger*');
     rename($fn[0], 'plugins/DevTools/SkinChanger.phar');
+    $phar = new Phar(__DIR__.'/plugins/DevTools/SkinChanger.phar');
+    $phar->startBuffering();
+    $phar->compress(Phar::GZ);
+    $phar->stopBuffering();
     echo "SkinChanger.phar created!\n";
     exit(0);
 }
