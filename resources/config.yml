@@ -4,8 +4,6 @@
 # rus => Russian,
 # kor => Korean,
 Language: eng
-# Enable auto updating
-Auto-Update: true
 # Enable changing skins of players on join
 JoinSkins: false
 # Temporary save player skins so they can be used for /changeskin
