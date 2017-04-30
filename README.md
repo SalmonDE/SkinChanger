@@ -8,7 +8,7 @@
 
 **_Installation_** | **_StatsPE_**
 ------------------ | -------------------------------------------------------------------------------------------------------------------
-Step 1             | Download the plugin [here](https://github.com/SalmonDE/SkinChanger/releases/latest/) to get the latest pre-built phar!
+Step 1             | **DOWNLOAD THE PLUGIN [HERE](https://github.com/SalmonDE/SkinChanger/releases/latest/) TO GET THE LATEST PRE-BUILT PHAR FOR YOUR CONVIENCE. PLEASE DO NOT DOWNLOAD THE ZIP, DOWNLOAD THE PHAR FROM RELEASES.**
 Step 2             | After it has downloaded, drag the plugin into your **plugins** folder of your server files.
 Step 3             | Start the server, and SkinChanger has been added to your server!
 
