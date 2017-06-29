@@ -139,7 +139,6 @@ class Skin extends PluginBase implements Listener
     $this->skins = json_decode(file_get_contents($this->getDataFolder().'skins.json'), true);
     $this->tasks = [];
     $this->capes2[] = $this->getMessages()['General']['Keiner'];
-    $updateManager = new \SalmonDE\Updater\UpdateManager($this);
   }
 
   public function getMessages(){
